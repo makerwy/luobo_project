@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
                 child: AspectRatio(
                   aspectRatio: 3,
                   child: Swiper(
+                    speed: 400,
                     children: images,
                     indicator: CircleSwiperIndicator(),
                   ),
