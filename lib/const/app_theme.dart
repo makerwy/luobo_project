@@ -67,12 +67,11 @@ class AppTheme {
 
   //normal
   static final ThemeData norTheme = ThemeData(
-    primarySwatch: norPrimarySwatch,
-    primaryColor: const Color(0xFFFF0000),
-    splashColor: const Color(0x00000000), //去除点击tab时的水波纹动画
-    appBarTheme: norAppBarTheme,
-    bottomNavigationBarTheme: norBottomBarTheme,
-  );
+      primarySwatch: norPrimarySwatch,
+      primaryColor: const Color(0xFFFF0000),
+      splashColor: const Color(0x00000000), //去除点击tab时的水波纹动画
+      appBarTheme: norAppBarTheme,
+      bottomNavigationBarTheme: norBottomBarTheme);
 
   //dark
   static final ThemeData darkTheme = ThemeData(
@@ -82,4 +81,12 @@ class AppTheme {
     appBarTheme: darkAppBarTheme,
     bottomNavigationBarTheme: darkBottomBarTheme,
   );
+}
+
+class LBColors {
+  static const Color main = Color(0xFF097BEF);
+  static const Color title = Color(0xFF333333);
+  static const Color subtitle = Color(0xFF888888);
+  static const Color line = Color(0xFFF9F9F9);
+  static const Color c_ce5c3c = Color(0xFFCE5C3C);
 }
