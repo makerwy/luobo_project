@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luobo_project/const/app_theme.dart';
+import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
 import 'package:luobo_project/model/home_kind_model.dart';
 import 'package:luobo_project/widgets/swiper.dart';
@@ -52,7 +53,12 @@ class _HomePageState extends State<HomePage> {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   //创建列表项
-                  return HomeListItem(model: "$index");
+                  return GestureDetector(
+                    child: HomeListItem(model: "$index"),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(RouterNames.goodsdetail);
+                    },
+                  );
                   // return ListTile(
                   //   title: Text("$index"),
                   //   onTap: () => debugPrint('$index'),
@@ -188,8 +194,8 @@ class HomeListItem extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget>[
-                Expanded(
+              children: <Widget>[
+                const Expanded(
                   child: Text(
                     "保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T",
                     style: TextStyle(color: LBColors.title, fontSize: 14),
@@ -197,7 +203,18 @@ class HomeListItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Text("69.81万"),
+                RichText(
+                    text: const TextSpan(
+                        text: "69.81",
+                        style:
+                            TextStyle(fontSize: 16, color: LBColors.c_ce5c3c),
+                        children: [
+                      TextSpan(
+                          text: "元",
+                          style: TextStyle(
+                              fontSize: 13, color: LBColors.c_ce5c3c)),
+                    ])),
+                // const Text("69.81万"),
               ],
             ),
           ),

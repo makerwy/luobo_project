@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
 
 import 'const/tabbar_config.dart';
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       theme: AppTheme.norTheme,
       darkTheme: AppTheme.darkTheme,
-      home: const TabPage(),
+      // home: const TabPage(),
+      initialRoute: RouterNames.root,
+      routes: Routers.routers,
     );
   }
 }
