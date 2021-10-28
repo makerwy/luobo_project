@@ -189,8 +189,14 @@ class HomeListItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const <Widget>[
-                Text("保时捷718  2020款  Boxster  2.0T",
-                    style: TextStyle(color: LBColors.title, fontSize: 14)),
+                Expanded(
+                  child: Text(
+                    "保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T",
+                    style: TextStyle(color: LBColors.title, fontSize: 14),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
                 Text("69.81万"),
               ],
             ),
