@@ -88,5 +88,9 @@ class LBColors {
   static const Color title = Color(0xFF333333);
   static const Color subtitle = Color(0xFF888888);
   static const Color line = Color(0xFFF9F9F9);
+  static const Color clear = Color(0x00000000);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+
   static const Color c_ce5c3c = Color(0xFFCE5C3C);
 }
