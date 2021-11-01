@@ -17,9 +17,10 @@ class _StoragePageState extends State<StoragePage> {
         title: Text(S.of(context).storage),
       ),
       backgroundColor: LBColors.white,
-      body: Container(
-        // color: LBColors.white,
+      body: SizedBox(
+        height: double.infinity,
         child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
               Stack(
@@ -73,7 +74,7 @@ class StorageDataView extends StatelessWidget {
       );
       children.add(widget);
     }
-    children.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
+    // children.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
 
     return Column(
       children: children,
@@ -91,12 +92,12 @@ class StorageDataItemView extends StatelessWidget {
     return SizedBox(
       height: 120,
       width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
               height: 60,
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -109,20 +110,24 @@ class StorageDataItemView extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: (map ?? {}).keys.map((e) {
-                  return StorageMenuItem(
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: Wrap(
+              // alignment: WrapAlignment.spaceBetween,
+              children: (map ?? {}).keys.map((e) {
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width / 3.0,
+                  child: StorageMenuItem(
                     number: map?[e],
                     title: e,
-                  );
-                }).toList(),
-              ),
-            )
-          ],
-        ),
+                  ),
+                );
+              }).toList(),
+            ),
+          )
+        ],
       ),
     );
   }
