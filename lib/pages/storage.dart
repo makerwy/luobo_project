@@ -47,13 +47,17 @@ class StorageDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var children = <Widget>[];
-    children.add(const StorageDataItemView(
-      title: "仓储数据",
-      map: {"入库单": 0, "出库单": 0, "库存": 0},
+    children.add(StorageDataItemView(
+      title: S.current.storageData,
+      map: {
+        S.current.inStorage: 0,
+        S.current.outStorage: 0,
+        S.current.inventory: 0
+      },
     ));
-    children.add(const StorageDataItemView(
-      title: "物流单",
-      map: {"进行中": 0, "已完成": 0},
+    children.add(StorageDataItemView(
+      title: S.current.logistisData,
+      map: {S.current.doing: 0, S.current.finish: 0},
     ));
 
     const images = [
@@ -62,7 +66,12 @@ class StorageDataView extends StatelessWidget {
       "storage_ic_logistics.png",
       "storage_ic_monitor.png"
     ];
-    const titles = ["入库申请", "出库申请", "申请运输", "监控"];
+    final titles = [
+      S.current.inStorageApply,
+      S.current.outStorageApply,
+      S.current.applyTransport,
+      S.current.monitor
+    ];
     children.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
     for (var i = 0; i < images.length; i++) {
       var widget = GestureDetector(

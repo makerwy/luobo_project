@@ -22,26 +22,26 @@ class _MinePageState extends State<MinePage> {
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
-            children: const [
-              MineHeaderView(),
+            children: [
+              const MineHeaderView(),
               MineMenuView(
-                title: "我的订单",
+                title: S.current.myOrder,
                 map: {
-                  "全部": "assets/images/order_ic_all.png",
-                  "待发货": "assets/images/order_ic_wait.png",
-                  "已发货": "assets/images/order_ic_fahuo.png",
-                  "已签收": "assets/images/order_ic_sign.png"
+                  S.current.totalOrder: "assets/images/order_ic_all.png",
+                  S.current.waitdeliver: "assets/images/order_ic_wait.png",
+                  S.current.delivered: "assets/images/order_ic_fahuo.png",
+                  S.current.signed: "assets/images/order_ic_sign.png"
                 },
               ),
               MineMenuView(
-                title: "我的服务",
+                title: S.current.myService,
                 map: {
-                  "我的资产": "assets/images/mine_ic_zichang.png",
-                  "联系客服": "assets/images/mine_ic_kefu.png",
-                  "隐私设置": "assets/images/mine_ic_private.png",
-                  "关于我们": "assets/images/mine_ic_us.png",
-                  "账户注销": "assets/images/mine_ic_logout.png",
-                  "退出账户": "assets/images/mine_ic_exit.png"
+                  S.current.myAssets: "assets/images/mine_ic_zichang.png",
+                  S.current.contact: "assets/images/mine_ic_kefu.png",
+                  S.current.settings: "assets/images/mine_ic_private.png",
+                  S.current.aboutUs: "assets/images/mine_ic_us.png",
+                  S.current.logout: "assets/images/mine_ic_logout.png",
+                  S.current.exit: "assets/images/mine_ic_exit.png"
                 },
               ),
             ],
@@ -94,12 +94,12 @@ class MineHeaderView extends StatelessWidget {
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   Text(
-                    "去认证审核",
-                    style: TextStyle(fontSize: 14, color: LBColors.white),
+                    S.current.check,
+                    style: const TextStyle(fontSize: 14, color: LBColors.white),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios,
                     color: LBColors.white,
                     size: 13,

@@ -1,7 +1,35 @@
 {
     "app_name":"Luobo Houseware",
-    "home":"home",
-    "storage":"storage",
-    "mall":"mall",
-    "mine":"mine"
+
+    "home":"Home",
+    "storage":"Storage",
+    "mall":"Mall",
+    "mine":"Mine",
+    
+    "check":"go to check",
+    "myOrder":"My Orders",
+    "totalOrder":"Total",
+    "waitdeliver":"Waitdeliver",
+    "delivered":"Delivered",
+    "signed":"Signed",
+
+    "myService":"My Services",
+    "myAssets":"My Assets",
+    "contact":"Contact",
+    "settings":"Settings",
+    "aboutUs":"About Us",
+    "logout":"Logout",
+    "exit":"Exit",
+
+    "storageData":"Storage Data",
+    "inStorage":"InStorage",
+    "outStorage":"OutStorage",
+    "inventory":"Inventory",
+    "logistisData":"Loginstics Data",
+    "doing":"Doing",
+    "finish":"Finish",
+    "inStorageApply":"InStorageApply",
+    "outStorageApply":"OutStorageApply",
+    "applyTransport":"Apply Transport",
+    "monitor":"Monitor"
 }

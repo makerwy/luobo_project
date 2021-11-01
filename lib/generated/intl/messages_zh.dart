@@ -21,10 +21,34 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("关于我们"),
         "app_name": MessageLookupByLibrary.simpleMessage("萝泊云仓"),
+        "applyTransport": MessageLookupByLibrary.simpleMessage("申请运输"),
+        "check": MessageLookupByLibrary.simpleMessage("去认证审核"),
+        "contact": MessageLookupByLibrary.simpleMessage("联系客服"),
+        "delivered": MessageLookupByLibrary.simpleMessage("已发货"),
+        "doing": MessageLookupByLibrary.simpleMessage("进行中"),
+        "exit": MessageLookupByLibrary.simpleMessage("退出账户"),
+        "finish": MessageLookupByLibrary.simpleMessage("已完成"),
         "home": MessageLookupByLibrary.simpleMessage("首页"),
+        "inStorage": MessageLookupByLibrary.simpleMessage("入库单"),
+        "inStorageApply": MessageLookupByLibrary.simpleMessage("入库申请"),
+        "inventory": MessageLookupByLibrary.simpleMessage("库存"),
+        "logistisData": MessageLookupByLibrary.simpleMessage("物流单"),
+        "logout": MessageLookupByLibrary.simpleMessage("账户注销"),
         "mall": MessageLookupByLibrary.simpleMessage("贸易"),
         "mine": MessageLookupByLibrary.simpleMessage("我的"),
-        "storage": MessageLookupByLibrary.simpleMessage("仓储/物流")
+        "monitor": MessageLookupByLibrary.simpleMessage("监控"),
+        "myAssets": MessageLookupByLibrary.simpleMessage("我的资产"),
+        "myOrder": MessageLookupByLibrary.simpleMessage("我的订单"),
+        "myService": MessageLookupByLibrary.simpleMessage("我的服务"),
+        "outStorage": MessageLookupByLibrary.simpleMessage("出库单"),
+        "outStorageApply": MessageLookupByLibrary.simpleMessage("出库申请"),
+        "settings": MessageLookupByLibrary.simpleMessage("隐私设置"),
+        "signed": MessageLookupByLibrary.simpleMessage("已签收"),
+        "storage": MessageLookupByLibrary.simpleMessage("仓储/物流"),
+        "storageData": MessageLookupByLibrary.simpleMessage("仓储数据"),
+        "totalOrder": MessageLookupByLibrary.simpleMessage("全部"),
+        "waitdeliver": MessageLookupByLibrary.simpleMessage("待发货")
       };
 }

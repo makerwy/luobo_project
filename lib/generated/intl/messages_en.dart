@@ -21,10 +21,37 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "app_name": MessageLookupByLibrary.simpleMessage("Luobo Houseware"),
-        "home": MessageLookupByLibrary.simpleMessage("home"),
-        "mall": MessageLookupByLibrary.simpleMessage("mall"),
-        "mine": MessageLookupByLibrary.simpleMessage("mine"),
-        "storage": MessageLookupByLibrary.simpleMessage("storage")
+        "applyTransport":
+            MessageLookupByLibrary.simpleMessage("Apply Transport"),
+        "check": MessageLookupByLibrary.simpleMessage("go to check"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contact"),
+        "delivered": MessageLookupByLibrary.simpleMessage("Delivered"),
+        "doing": MessageLookupByLibrary.simpleMessage("Doing"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "finish": MessageLookupByLibrary.simpleMessage("Finish"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "inStorage": MessageLookupByLibrary.simpleMessage("InStorage"),
+        "inStorageApply":
+            MessageLookupByLibrary.simpleMessage("InStorageApply"),
+        "inventory": MessageLookupByLibrary.simpleMessage("Inventory"),
+        "logistisData": MessageLookupByLibrary.simpleMessage("Loginstics Data"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "mall": MessageLookupByLibrary.simpleMessage("Mall"),
+        "mine": MessageLookupByLibrary.simpleMessage("Mine"),
+        "monitor": MessageLookupByLibrary.simpleMessage("Monitor"),
+        "myAssets": MessageLookupByLibrary.simpleMessage("My Assets"),
+        "myOrder": MessageLookupByLibrary.simpleMessage("My Orders"),
+        "myService": MessageLookupByLibrary.simpleMessage("My Services"),
+        "outStorage": MessageLookupByLibrary.simpleMessage("OutStorage"),
+        "outStorageApply":
+            MessageLookupByLibrary.simpleMessage("OutStorageApply"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "signed": MessageLookupByLibrary.simpleMessage("Signed"),
+        "storage": MessageLookupByLibrary.simpleMessage("Storage"),
+        "storageData": MessageLookupByLibrary.simpleMessage("Storage Data"),
+        "totalOrder": MessageLookupByLibrary.simpleMessage("Total"),
+        "waitdeliver": MessageLookupByLibrary.simpleMessage("Waitdeliver")
       };
 }

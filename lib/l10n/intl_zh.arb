@@ -1,7 +1,36 @@
 {
     "app_name":"萝泊云仓",
+    
     "home":"首页",
     "storage":"仓储/物流",
     "mall":"贸易",
-    "mine":"我的"
+    "mine":"我的",
+    
+    "check":"去认证审核",
+    "myOrder":"我的订单",
+    "totalOrder":"全部",
+    "waitdeliver":"待发货",
+    "delivered":"已发货",
+    "signed":"已签收",
+
+    "myService":"我的服务",
+    "myAssets":"我的资产",
+    "contact":"联系客服",
+    "settings":"隐私设置",
+    "aboutUs":"关于我们",
+    "logout":"账户注销",
+    "exit":"退出账户",
+
+    "storageData":"仓储数据",
+    "inStorage":"入库单",
+    "outStorage":"出库单",
+    "inventory":"库存",
+    "logistisData":"物流单",
+    "doing":"进行中",
+    "finish":"已完成",
+    "inStorageApply":"入库申请",
+    "outStorageApply":"出库申请",
+    "applyTransport":"申请运输",
+    "monitor":"监控"
+
 }
