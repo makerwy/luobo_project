@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/routers.dart';
@@ -21,7 +22,18 @@ class _HomePageState extends State<HomePage> {
     "https://picsum.photos/450/150?random=400"
   ]
       .map((e) => GestureDetector(
-            child: Image.network(e, fit: BoxFit.fill),
+            // child: Image.network(e, fit: BoxFit.fill),
+            child: CachedNetworkImage(
+              imageUrl: e,
+              fit: BoxFit.cover,
+              placeholder: (ctx, r) {
+                return const Center(
+                    child: SizedBox(
+                  child: CircularProgressIndicator(),
+                  width: 40,
+                ));
+              },
+            ),
             onTap: () {
               debugPrint(e);
             },
