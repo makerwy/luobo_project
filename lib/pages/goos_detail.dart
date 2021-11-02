@@ -80,7 +80,7 @@ class GoodsDetailContent extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 17,
                           color: LBColors.title,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -138,7 +138,7 @@ class GoodsDetailContent extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 14,
                           color: LBColors.title,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),

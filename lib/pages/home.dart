@@ -131,7 +131,7 @@ class HomeTopHeader extends StatelessWidget {
               "推荐商品",
               style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: LBColors.title),
             ),
           ),

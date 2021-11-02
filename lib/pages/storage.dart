@@ -159,7 +159,7 @@ class StorageMenuItem extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 18,
                 color: LBColors.white,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.w500),
           ),
         ),
         Text(
@@ -167,7 +167,7 @@ class StorageMenuItem extends StatelessWidget {
           style: const TextStyle(
               fontSize: 13,
               color: Color.fromARGB(153, 255, 255, 255),
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.w500),
         )
       ],
     );
@@ -197,7 +197,7 @@ class StorageCardMenuItem extends StatelessWidget {
             Text(title ?? "",
                 style: const TextStyle(
                     fontSize: 17,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: LBColors.title)),
           ],
         ),

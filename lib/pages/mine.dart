@@ -89,7 +89,7 @@ class MineHeaderView extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 19,
                         color: LBColors.white,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ),

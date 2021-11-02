@@ -46,7 +46,10 @@ class _MallPageState extends State<MallPage> {
               ),
               Text(
                 titles[i],
-                style: const TextStyle(fontSize: 17, color: LBColors.title),
+                style: const TextStyle(
+                    fontSize: 17,
+                    color: LBColors.title,
+                    fontWeight: FontWeight.w500),
               )
             ],
           ),
