@@ -31,5 +31,13 @@
     "inStorageApply":"InStorageApply",
     "outStorageApply":"OutStorageApply",
     "applyTransport":"Apply Transport",
-    "monitor":"Monitor"
+    "monitor":"Monitor",
+
+    "totalTrade":"Total Trade",
+    "remainTrade":"Remain Trade",
+    "expireTrade":"Expire Trade",
+    "buybackOrder":"Buyback Ordes",
+    "tradeOrder":"Trade Ordes",
+    "finace":"Finance",
+    "buybackApply":"Buyback Apply"
 }

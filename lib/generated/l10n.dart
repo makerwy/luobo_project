@@ -339,6 +339,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Total Trade`
+  String get totalTrade {
+    return Intl.message(
+      'Total Trade',
+      name: 'totalTrade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remain Trade`
+  String get remainTrade {
+    return Intl.message(
+      'Remain Trade',
+      name: 'remainTrade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expire Trade`
+  String get expireTrade {
+    return Intl.message(
+      'Expire Trade',
+      name: 'expireTrade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buyback Ordes`
+  String get buybackOrder {
+    return Intl.message(
+      'Buyback Ordes',
+      name: 'buybackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trade Ordes`
+  String get tradeOrder {
+    return Intl.message(
+      'Trade Ordes',
+      name: 'tradeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finance`
+  String get finace {
+    return Intl.message(
+      'Finance',
+      name: 'finace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buyback Apply`
+  String get buybackApply {
+    return Intl.message(
+      'Buyback Apply',
+      name: 'buybackApply',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -31,6 +31,14 @@
     "inStorageApply":"入库申请",
     "outStorageApply":"出库申请",
     "applyTransport":"申请运输",
-    "monitor":"监控"
+    "monitor":"监控",
+
+    "totalTrade":"贸易总额",
+    "remainTrade":"剩余回购",
+    "expireTrade":"即将到期",
+    "buybackOrder":"回购订单",
+    "tradeOrder":"贸易订单",
+    "finace":"存货融资",
+    "buybackApply":"回购申请"
 
 }

@@ -25,11 +25,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("Luobo Houseware"),
         "applyTransport":
             MessageLookupByLibrary.simpleMessage("Apply Transport"),
+        "buybackApply": MessageLookupByLibrary.simpleMessage("Buyback Apply"),
+        "buybackOrder": MessageLookupByLibrary.simpleMessage("Buyback Ordes"),
         "check": MessageLookupByLibrary.simpleMessage("go to check"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact"),
         "delivered": MessageLookupByLibrary.simpleMessage("Delivered"),
         "doing": MessageLookupByLibrary.simpleMessage("Doing"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "expireTrade": MessageLookupByLibrary.simpleMessage("Expire Trade"),
+        "finace": MessageLookupByLibrary.simpleMessage("Finance"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inStorage": MessageLookupByLibrary.simpleMessage("InStorage"),
@@ -47,11 +51,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "outStorage": MessageLookupByLibrary.simpleMessage("OutStorage"),
         "outStorageApply":
             MessageLookupByLibrary.simpleMessage("OutStorageApply"),
+        "remainTrade": MessageLookupByLibrary.simpleMessage("Remain Trade"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signed": MessageLookupByLibrary.simpleMessage("Signed"),
         "storage": MessageLookupByLibrary.simpleMessage("Storage"),
         "storageData": MessageLookupByLibrary.simpleMessage("Storage Data"),
         "totalOrder": MessageLookupByLibrary.simpleMessage("Total"),
+        "totalTrade": MessageLookupByLibrary.simpleMessage("Total Trade"),
+        "tradeOrder": MessageLookupByLibrary.simpleMessage("Trade Ordes"),
         "waitdeliver": MessageLookupByLibrary.simpleMessage("Waitdeliver")
       };
 }
