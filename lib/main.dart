@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/utils/api.dart';
+import 'package:luobo_project/utils/http.dart';
+import 'package:luobo_project/utils/local_cache.dart';
 
 import 'const/tabbar_config.dart';
 import 'const/app_theme.dart';
@@ -14,6 +18,14 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    LocalCache().init();
+    Http.init(baseUrl: Api.baseUrl, headers: {
+      "version": "1.0.0",
+      "app_id": "100",
+      "app_platform": "iPhone7,1",
+      "referer": "luobotech.com"
+    });
+
     return MaterialApp(
       localizationsDelegates: const [
         S.delegate,
@@ -27,6 +39,7 @@ class MyApp extends StatelessWidget {
       // home: const TabPage(),
       initialRoute: RouterNames.root,
       routes: Routers.routers,
+      builder: EasyLoading.init(),
     );
   }
 }

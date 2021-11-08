@@ -4,6 +4,8 @@ import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
 import 'package:luobo_project/model/home_kind_model.dart';
+import 'package:luobo_project/utils/network.dart';
+import 'package:luobo_project/utils/toast.dart';
 import 'package:luobo_project/widgets/swiper.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,7 +37,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             onTap: () {
-              debugPrint(e);
+              // LBToast.showToast(msg: e);
+              LBToast.showLoading();
             },
           ))
       .toList();
@@ -43,6 +46,23 @@ class _HomePageState extends State<HomePage> {
   final menus = ["奥迪", "奔驰", "本田", "大众", "丰田"]
       .map((e) => HomeKindModel("https://picsum.photos/40", e))
       .toList();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void requestHomeHeadInfo() async {
+    dynamic response = await Http().get("index/main");
+    debugPrint("debug ====  " + response);
+    // try {
+    //   dynamic response = await Http().get("index/main");
+    //   debugPrint(response);
+    // } catch (e) {
+    //   debugPrint("debug ====" + e.toString());
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +88,8 @@ class _HomePageState extends State<HomePage> {
                   return GestureDetector(
                     child: HomeListItem(model: "$index"),
                     onTap: () {
-                      Navigator.of(context).pushNamed(RouterNames.goodsdetail);
+                      requestHomeHeadInfo();
+                      // Navigator.of(context).pushNamed(RouterNames.goodsdetail);
                     },
                   );
                   // return ListTile(

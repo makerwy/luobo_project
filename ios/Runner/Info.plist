@@ -43,8 +43,13 @@
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-	<string>https</string>
-	<string>http</string>
+		<string>https</string>
+		<string>http</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
