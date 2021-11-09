@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
-import 'package:luobo_project/model/home_kind_model.dart';
-import 'package:luobo_project/utils/network.dart';
+import 'package:luobo_project/model/home_banner_model.dart';
+import 'package:luobo_project/model/home_list_model.dart';
 import 'package:luobo_project/utils/toast.dart';
+import 'package:luobo_project/viewmodel/home_view_model.dart';
 import 'package:luobo_project/widgets/swiper.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,50 +21,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  final images = [
-    "https://picsum.photos/450/150?random=101",
-    "https://picsum.photos/450/150?random=200",
-    "https://picsum.photos/450/150?random=300",
-    "https://picsum.photos/450/150?random=400"
-  ]
-      .map((e) => GestureDetector(
-            // child: Image.network(e, fit: BoxFit.fill),
-            child: CachedNetworkImage(
-              imageUrl: e,
-              fit: BoxFit.cover,
-              placeholder: (ctx, r) {
-                return const Center(
-                    child: SizedBox(
-                  child: CircularProgressIndicator(),
-                  width: 40,
-                ));
-              },
-            ),
-            onTap: () {
-              // LBToast.showToast(msg: e);
-              LBToast.showLoading();
-            },
-          ))
-      .toList();
-
-  final menus = ["奥迪", "奔驰", "本田", "大众", "丰田"]
-      .map((e) => HomeKindModel("https://picsum.photos/40", e))
-      .toList();
 
   @override
   void initState() {
+    HomeViewModel homeVM = Provider.of<HomeViewModel>(context, listen: false);
+    homeVM.requestHomeHeadInfo();
+    homeVM.requestHomeList();
     super.initState();
-  }
-
-  void requestHomeHeadInfo() async {
-    dynamic response = await Http().get("index/main");
-    debugPrint("debug ====  " + response);
-    // try {
-    //   dynamic response = await Http().get("index/main");
-    //   debugPrint(response);
-    // } catch (e) {
-    //   debugPrint("debug ====" + e.toString());
-    // }
   }
 
   @override
@@ -75,30 +42,60 @@ class _HomePageState extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: HomeTopHeader(
-                banners: images,
-                kindList: menus,
+              child: Consumer<HomeViewModel>(
+                builder: (context, viewModel, child) {
+                  return HomeTopHeader(
+                    banners: (viewModel.headerInfo?.banner ?? [])
+                        .map((e) => GestureDetector(
+                              // child: Image.network(e, fit: BoxFit.fill),
+                              child: CachedNetworkImage(
+                                // imageUrl: e.picture ?? "",
+                                imageUrl:
+                                    "https://picsum.photos/450/150?random=${Random().nextInt(200)}",
+                                fit: BoxFit.cover,
+                                placeholder: (ctx, r) {
+                                  return const Center(
+                                      child: SizedBox(
+                                    child: CircularProgressIndicator(),
+                                    width: 40,
+                                  ));
+                                },
+                              ),
+                              onTap: () {
+                                // LBToast.showToast(msg: e);
+                                LBToast.showLoading();
+                              },
+                            ))
+                        .toList(),
+                    kindList: viewModel.headerInfo?.brandList ?? [],
+                  );
+                },
               ),
             ),
-            SliverList(
-              // itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  //创建列表项
-                  return GestureDetector(
-                    child: HomeListItem(model: "$index"),
-                    onTap: () {
-                      requestHomeHeadInfo();
-                      // Navigator.of(context).pushNamed(RouterNames.goodsdetail);
+            Consumer<HomeViewModel>(
+              builder: (context, viewModel, child) {
+                return SliverList(
+                  // itemExtent: 50.0,
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      //创建列表项
+                      return GestureDetector(
+                        child: HomeListItem(
+                            model: viewModel.recommendList?[index]),
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(RouterNames.goodsdetail);
+                        },
+                      );
+                      // return ListTile(
+                      //   title: Text("$index"),
+                      //   onTap: () => debugPrint('$index'),
+                      // );
                     },
-                  );
-                  // return ListTile(
-                  //   title: Text("$index"),
-                  //   onTap: () => debugPrint('$index'),
-                  // );
-                },
-                childCount: 50,
-              ),
+                    childCount: viewModel.recommendList?.length ?? 0,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -117,12 +114,15 @@ class _HomePageState extends State<HomePage> {
 
 class HomeTopHeader extends StatelessWidget {
   final List<Widget> banners;
-  final List<HomeKindModel> kindList;
+  final List<HomeBanner> kindList;
   const HomeTopHeader({Key? key, required this.banners, required this.kindList})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (banners.isEmpty && kindList.isEmpty) {
+      return Container();
+    }
     return Column(
       children: [
         Padding(
@@ -163,7 +163,7 @@ class HomeTopHeader extends StatelessWidget {
 }
 
 class HomeKindMenu extends StatelessWidget {
-  final List<HomeKindModel> itemList;
+  final List<HomeBanner> itemList;
   const HomeKindMenu({Key? key, required this.itemList}) : super(key: key);
 
   @override
@@ -171,15 +171,27 @@ class HomeKindMenu extends StatelessWidget {
     var children = <Widget>[];
     for (var item in itemList) {
       Widget widget = Column(children: [
-        Image.network(
-          "https://picsum.photos/40",
+        CachedNetworkImage(
+          // imageUrl: item.logoUrl ?? "",
+          imageUrl: "https://picsum.photos/40",
+          fit: BoxFit.cover,
           width: 27,
           height: 27,
-          fit: BoxFit.cover,
+          placeholder: (ctx, r) => Container(
+            width: 27,
+            height: 27,
+            color: Colors.red,
+          ),
         ),
+        // Image.network(
+        //   "https://picsum.photos/40",
+        //   width: 27,
+        //   height: 27,
+        //   fit: BoxFit.cover,
+        // ),
         Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: Text(item.name),
+          child: Text(item.name ?? ""),
         )
       ]);
       children.add(widget);
@@ -206,7 +218,7 @@ class HomeKindMenu extends StatelessWidget {
 }
 
 class HomeListItem extends StatelessWidget {
-  final String? model;
+  final RecommendGoods? model;
   const HomeListItem({Key? key, this.model}) : super(key: key);
 
   @override
@@ -228,20 +240,20 @@ class HomeListItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Expanded(
+                Expanded(
                   child: Text(
-                    "保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T 保时捷718  2020款  Boxster  2.0T",
-                    style: TextStyle(color: LBColors.title, fontSize: 14),
+                    model?.name ?? "",
+                    style: const TextStyle(color: LBColors.title, fontSize: 14),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 RichText(
-                    text: const TextSpan(
-                        text: "69.81",
-                        style:
-                            TextStyle(fontSize: 16, color: LBColors.c_ce5c3c),
-                        children: [
+                    text: TextSpan(
+                        text: "${model?.price ?? 0}",
+                        style: const TextStyle(
+                            fontSize: 16, color: LBColors.c_ce5c3c),
+                        children: const [
                       TextSpan(
                           text: "元",
                           style: TextStyle(
@@ -251,36 +263,40 @@ class HomeListItem extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 7),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 7),
             child: SizedBox(
               child: Text(
-                "中规期车",
-                style: TextStyle(fontSize: 12, color: LBColors.subtitle),
+                model?.skuName ?? "",
+                style: const TextStyle(fontSize: 12, color: LBColors.title),
               ),
               width: double.infinity,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 8),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
             child: SizedBox(
               child: Text(
-                "白色/波尔多红  |  售全国   |   国VI",
-                style: TextStyle(color: LBColors.subtitle, fontSize: 12),
+                model?.categoryName ?? "",
+                style: const TextStyle(color: LBColors.subtitle, fontSize: 12),
               ),
               width: double.infinity,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 8),
-            child: SizedBox(
-              child: Text(
-                "彩标 助力转向 倒影 兔钥匙 Bose 电折后视镜  加热方向盘…",
-                style: TextStyle(color: LBColors.subtitle, fontSize: 12),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+          Offstage(
+            offstage: model?.service == null,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: SizedBox(
+                child: Text(
+                  model?.service ?? "",
+                  style:
+                      const TextStyle(color: LBColors.subtitle, fontSize: 12),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                width: double.infinity,
               ),
-              width: double.infinity,
             ),
           ),
           const Divider(
@@ -290,9 +306,10 @@ class HomeListItem extends StatelessWidget {
           ),
           SizedBox(
             child: Row(
-              children: const [
-                Text("北京万通祥和贸易有限公司",
-                    style: TextStyle(color: LBColors.title, fontSize: 12)),
+              children: [
+                Text(model?.merchantName ?? "",
+                    style:
+                        const TextStyle(color: LBColors.title, fontSize: 12)),
               ],
             ),
             width: double.infinity,

@@ -3,9 +3,11 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/network/http.dart';
 import 'package:luobo_project/utils/api.dart';
-import 'package:luobo_project/utils/http.dart';
 import 'package:luobo_project/utils/local_cache.dart';
+import 'package:luobo_project/viewmodel/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 import 'const/tabbar_config.dart';
 import 'const/app_theme.dart';
@@ -26,20 +28,25 @@ class MyApp extends StatelessWidget {
       "referer": "luobotech.com"
     });
 
-    return MaterialApp(
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      theme: AppTheme.norTheme,
-      darkTheme: AppTheme.darkTheme,
-      // home: const TabPage(),
-      initialRoute: RouterNames.root,
-      routes: Routers.routers,
-      builder: EasyLoading.init(),
+      child: MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        theme: AppTheme.norTheme,
+        darkTheme: AppTheme.darkTheme,
+        // home: const TabPage(),
+        initialRoute: RouterNames.root,
+        routes: Routers.routers,
+        builder: EasyLoading.init(),
+      ),
     );
   }
 }

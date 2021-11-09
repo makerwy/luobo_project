@@ -1,17 +1,17 @@
-class HomeHeadInfo {
-  HomeHeadInfo({
+class HomeHeaderInfo {
+  HomeHeaderInfo({
     this.banner,
     this.brandList,
   });
 
-  List<Banner>? banner;
-  List<Banner>? brandList;
+  List<HomeBanner>? banner;
+  List<HomeBanner>? brandList;
 
-  factory HomeHeadInfo.fromJson(Map<String, dynamic> json) => HomeHeadInfo(
-        banner:
-            List<Banner>.from(json["banner"].map((x) => Banner.fromJson(x))),
-        brandList:
-            List<Banner>.from(json["brandList"].map((x) => Banner.fromJson(x))),
+  factory HomeHeaderInfo.fromJson(Map<String, dynamic> json) => HomeHeaderInfo(
+        banner: List<HomeBanner>.from(
+            json["banner"].map((x) => HomeBanner.fromJson(x))),
+        brandList: List<HomeBanner>.from(
+            json["brandList"].map((x) => HomeBanner.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -21,8 +21,8 @@ class HomeHeadInfo {
       };
 }
 
-class Banner {
-  Banner({
+class HomeBanner {
+  HomeBanner({
     this.createTime,
     this.id,
     this.name,
@@ -46,7 +46,7 @@ class Banner {
   int? categoryId;
   String? logoUrl;
 
-  factory Banner.fromJson(Map<String, dynamic> json) => Banner(
+  factory HomeBanner.fromJson(Map<String, dynamic> json) => HomeBanner(
         createTime: json["createTime"],
         id: json["id"],
         name: json["name"],

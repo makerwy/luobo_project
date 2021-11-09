@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'AppException.dart';
+import 'app_exception.dart';
 
 class ErrorInterceptor extends Interceptor {
   // 是否有网

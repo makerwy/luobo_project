@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:luobo_project/network/network.dart';
+import 'package:luobo_project/network/response.dart';
 
 class Http {
   static void init({
@@ -22,18 +26,24 @@ class Http {
     Network().cancelRequests(token: token);
   }
 
-  static Future get(
+  static RequestResponse _getMap(dynamic jsonString) {
+    return RequestResponse.fromJson(json.decode(jsonString));
+  }
+
+  static Future<RequestResponse> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? progressCallback,
   }) async {
-    return await Network().get(path,
+    Response response = await Network().get(path,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
         progressCallback: progressCallback);
+    debugPrint("path === " + response.data);
+    return _getMap(response.data);
   }
 
   static Future post(
@@ -45,13 +55,14 @@ class Http {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    return await Network().post(path,
+    Response response = await Network().post(path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
+    return _getMap(response.data);
   }
 
   static Future put(
@@ -63,13 +74,14 @@ class Http {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    return await Network().put(path,
+    Response response = await Network().put(path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
+    return _getMap(response.data);
   }
 
   Future patch(
@@ -81,13 +93,14 @@ class Http {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    return await Network().patch(path,
+    Response response = await Network().patch(path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
+    return _getMap(response.data);
   }
 
   Future delete(
@@ -97,10 +110,11 @@ class Http {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await Network().delete(path,
+    Response response = await Network().delete(path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken);
+    return _getMap(response.data);
   }
 }

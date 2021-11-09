@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:luobo_project/network/error.dart';
 import 'package:luobo_project/utils/local_cache.dart';
@@ -75,12 +74,12 @@ class Network {
     //     // "cacheDisk": cacheDisk,
     //   },
     // );
-    Response response = await dio.get(path,
+    return await dio.get(path,
         queryParameters: queryParameters,
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken,
         onReceiveProgress: progressCallback);
-    return response.data;
+    ;
   }
 
   Future post(
@@ -93,14 +92,13 @@ class Network {
     ProgressCallback? onReceiveProgress,
   }) async {
     Options requestOptions = _getRequestOptions(options);
-    Response response = await dio.post(path,
+    return await dio.post(path,
         data: data,
         queryParameters: queryParameters,
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
-    return response.data;
   }
 
   Future put(
@@ -113,14 +111,13 @@ class Network {
     ProgressCallback? onReceiveProgress,
   }) async {
     Options requestOptions = _getRequestOptions(options);
-    Response response = await dio.put(path,
+    return await dio.put(path,
         data: data,
         queryParameters: queryParameters,
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
-    return response.data;
   }
 
   Future patch(
@@ -133,14 +130,13 @@ class Network {
     ProgressCallback? onReceiveProgress,
   }) async {
     Options requestOptions = _getRequestOptions(options);
-    Response response = await dio.patch(path,
+    return await dio.patch(path,
         data: data,
         queryParameters: queryParameters,
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
-    return response.data;
   }
 
   Future delete(
@@ -151,11 +147,10 @@ class Network {
     CancelToken? cancelToken,
   }) async {
     Options requestOptions = _getRequestOptions(options);
-    Response response = await dio.delete(path,
+    return await dio.delete(path,
         data: data,
         queryParameters: queryParameters,
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken);
-    return response.data;
   }
 }
