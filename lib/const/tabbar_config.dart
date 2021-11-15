@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:luobo_project/generated/l10n.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:luobo_project/generated/locales.g.dart';
 import '/pages/home.dart';
 import '/pages/mall.dart';
 import '/pages/mine.dart';
@@ -16,16 +17,16 @@ class Tabbar {
     String label = "";
     switch (e) {
       case "home":
-        label = S.current.home;
+        label = LocaleKeys.home.tr;
         break;
       case "finance":
-        label = S.current.storage;
+        label = LocaleKeys.storage.tr;
         break;
       case "mall":
-        label = S.current.mall;
+        label = LocaleKeys.mall.tr;
         break;
       case "my":
-        label = S.current.mine;
+        label = LocaleKeys.mine.tr;
         break;
       default:
     }

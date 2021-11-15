@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
-import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/generated/locales.g.dart';
 
 class MallPage extends StatefulWidget {
   const MallPage({Key? key}) : super(key: key);
@@ -20,10 +21,10 @@ class _MallPageState extends State<MallPage> {
       "assets/images/mall_ic_apply.png"
     ];
     final titles = [
-      S.current.buybackOrder,
-      S.current.tradeOrder,
-      S.current.finace,
-      S.current.buybackApply
+      LocaleKeys.buybackOrder.tr,
+      LocaleKeys.tradeOrder.tr,
+      LocaleKeys.finace.tr,
+      LocaleKeys.buybackApply.tr
     ];
     children.add(const SizedBox(
       height: 25,
@@ -61,7 +62,7 @@ class _MallPageState extends State<MallPage> {
     return Scaffold(
         backgroundColor: LBColors.white,
         appBar: AppBar(
-          title: Text(S.of(context).mall),
+          title: Text(LocaleKeys.mall.tr),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -92,15 +93,15 @@ class _MallHeaderView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _MallHeaderItem(
-                  title: S.current.totalTrade,
+                  title: LocaleKeys.totalTrade.tr,
                   number: 0,
                 ),
                 _MallHeaderItem(
-                  title: S.current.remainTrade,
+                  title: LocaleKeys.remainTrade.tr,
                   number: 0,
                 ),
                 _MallHeaderItem(
-                  title: S.current.expireTrade,
+                  title: LocaleKeys.expireTrade.tr,
                   number: 0,
                 ),
               ],

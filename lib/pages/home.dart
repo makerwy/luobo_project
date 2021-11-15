@@ -2,15 +2,15 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/routers.dart';
-import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/model/home_banner_model.dart';
 import 'package:luobo_project/model/home_list_model.dart';
 import 'package:luobo_project/utils/toast.dart';
 import 'package:luobo_project/viewmodel/home_view_model.dart';
 import 'package:luobo_project/widgets/swiper.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    HomeViewModel homeVM = Provider.of<HomeViewModel>(context, listen: false);
-    homeVM.requestHomeHeadInfo();
-    homeVM.requestHomeList();
+    // HomeViewModel homeVM = HomeViewModel();
+    // homeVM.requestHomeHeadInfo();
+    // homeVM.requestHomeList();
     super.initState();
   }
 
@@ -35,67 +35,65 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(S.of(context).home),
+        title: Text(LocaleKeys.home.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: Consumer<HomeViewModel>(
-                builder: (context, viewModel, child) {
-                  return HomeTopHeader(
-                    banners: (viewModel.headerInfo?.banner ?? [])
-                        .map((e) => GestureDetector(
-                              // child: Image.network(e, fit: BoxFit.fill),
-                              child: CachedNetworkImage(
-                                // imageUrl: e.picture ?? "",
-                                imageUrl:
-                                    "https://picsum.photos/450/150?random=${Random().nextInt(200)}",
-                                fit: BoxFit.cover,
-                                placeholder: (ctx, r) {
-                                  return const Center(
-                                      child: SizedBox(
-                                    child: CircularProgressIndicator(),
-                                    width: 40,
-                                  ));
-                                },
-                              ),
-                              onTap: () {
-                                // LBToast.showToast(msg: e);
-                                LBToast.showLoading();
+              child: GetBuilder<HomeViewModel>(
+                init: HomeViewModel(),
+                builder: (controller) => HomeTopHeader(
+                  banners: (controller.headerInfo?.banner ?? [])
+                      .map((e) => GestureDetector(
+                            // child: Image.network(e, fit: BoxFit.fill),
+                            child: CachedNetworkImage(
+                              // imageUrl: e.picture ?? "",
+                              imageUrl:
+                                  "https://picsum.photos/450/150?random=${Random().nextInt(200)}",
+                              fit: BoxFit.cover,
+                              placeholder: (ctx, r) {
+                                return const Center(
+                                    child: SizedBox(
+                                  child: CircularProgressIndicator(),
+                                  width: 40,
+                                ));
                               },
-                            ))
-                        .toList(),
-                    kindList: viewModel.headerInfo?.brandList ?? [],
-                  );
-                },
+                            ),
+                            onTap: () {
+                              // LBToast.showToast(msg: e);
+                              LBToast.showLoading();
+                            },
+                          ))
+                      .toList(),
+                  kindList: controller.headerInfo?.brandList ?? [],
+                ),
               ),
             ),
-            Consumer<HomeViewModel>(
-              builder: (context, viewModel, child) {
-                return SliverList(
-                  // itemExtent: 50.0,
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      //创建列表项
-                      return GestureDetector(
-                        child: HomeListItem(
-                            model: viewModel.recommendList?[index]),
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(RouterNames.goodsdetail);
-                        },
-                      );
-                      // return ListTile(
-                      //   title: Text("$index"),
-                      //   onTap: () => debugPrint('$index'),
-                      // );
-                    },
-                    childCount: viewModel.recommendList?.length ?? 0,
-                  ),
-                );
-              },
+            GetBuilder<HomeViewModel>(
+              builder: (controller) => SliverList(
+                // itemExtent: 50.0,
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    //创建列表项
+                    return GestureDetector(
+                      child:
+                          HomeListItem(model: controller.recommendList?[index]),
+                      onTap: () {
+                        Get.toNamed(RouterNames.goodsdetail);
+                        // Navigator.of(context)
+                        //     .pushNamed(RouterNames.goodsdetail);
+                      },
+                    );
+                    // return ListTile(
+                    //   title: Text("$index"),
+                    //   onTap: () => debugPrint('$index'),
+                    // );
+                  },
+                  childCount: controller.recommendList?.length ?? 0,
+                ),
+              ),
             ),
           ],
         ),

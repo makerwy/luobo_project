@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
-import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/generated/locales.g.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _MinePageState extends State<MinePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       // appBar: AppBar(
-      //   title: Text(S.of(context).mine),
+      //   title: Text(cLocaleKeys.mine.tr),
       // ),
       body: SizedBox(
         height: double.infinity,
@@ -25,23 +26,23 @@ class _MinePageState extends State<MinePage> {
             children: [
               const MineHeaderView(),
               MineMenuView(
-                title: S.current.myOrder,
+                title: LocaleKeys.myOrder.tr,
                 map: {
-                  S.current.totalOrder: "assets/images/order_ic_all.png",
-                  S.current.waitdeliver: "assets/images/order_ic_wait.png",
-                  S.current.delivered: "assets/images/order_ic_fahuo.png",
-                  S.current.signed: "assets/images/order_ic_sign.png"
+                  LocaleKeys.totalOrder.tr: "assets/images/order_ic_all.png",
+                  LocaleKeys.waitdeliver.tr: "assets/images/order_ic_wait.png",
+                  LocaleKeys.delivered.tr: "assets/images/order_ic_fahuo.png",
+                  LocaleKeys.signed.tr: "assets/images/order_ic_sign.png"
                 },
               ),
               MineMenuView(
-                title: S.current.myService,
+                title: LocaleKeys.myService.tr,
                 map: {
-                  S.current.myAssets: "assets/images/mine_ic_zichang.png",
-                  S.current.contact: "assets/images/mine_ic_kefu.png",
-                  S.current.settings: "assets/images/mine_ic_private.png",
-                  S.current.aboutUs: "assets/images/mine_ic_us.png",
-                  S.current.logout: "assets/images/mine_ic_logout.png",
-                  S.current.exit: "assets/images/mine_ic_exit.png"
+                  LocaleKeys.myAssets.tr: "assets/images/mine_ic_zichang.png",
+                  LocaleKeys.contact.tr: "assets/images/mine_ic_kefu.png",
+                  LocaleKeys.settings.tr: "assets/images/mine_ic_private.png",
+                  LocaleKeys.aboutUs.tr: "assets/images/mine_ic_us.png",
+                  LocaleKeys.logout.tr: "assets/images/mine_ic_logout.png",
+                  LocaleKeys.exit.tr: "assets/images/mine_ic_exit.png"
                 },
               ),
             ],
@@ -96,7 +97,7 @@ class MineHeaderView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    S.current.check,
+                    LocaleKeys.check.tr,
                     style: const TextStyle(fontSize: 14, color: LBColors.white),
                   ),
                   const Icon(

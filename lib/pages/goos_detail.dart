@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/widgets/swiper.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,7 +20,8 @@ class GoodsDetailPage extends StatelessWidget {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
+              Get.back();
             },
           )),
       body: GoodsDetailContent(),

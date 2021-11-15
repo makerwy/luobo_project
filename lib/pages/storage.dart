@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:luobo_project/const/app_theme.dart';
-import 'package:luobo_project/generated/l10n.dart';
+import 'package:luobo_project/generated/locales.g.dart';
 
 class StoragePage extends StatefulWidget {
   const StoragePage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _StoragePageState extends State<StoragePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).storage),
+        title: Text(LocaleKeys.storage.tr),
       ),
       backgroundColor: LBColors.white,
       body: SizedBox(
@@ -48,16 +49,16 @@ class StorageDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     var children = <Widget>[];
     children.add(StorageDataItemView(
-      title: S.current.storageData,
+      title: LocaleKeys.storageData.tr,
       map: {
-        S.current.inStorage: 0,
-        S.current.outStorage: 0,
-        S.current.inventory: 0
+        LocaleKeys.inStorage.tr: 0,
+        LocaleKeys.outStorage.tr: 0,
+        LocaleKeys.inventory.tr: 0
       },
     ));
     children.add(StorageDataItemView(
-      title: S.current.logistisData,
-      map: {S.current.doing: 0, S.current.finish: 0},
+      title: LocaleKeys.logistisData.tr,
+      map: {LocaleKeys.doing.tr: 0, LocaleKeys.finish.tr: 0},
     ));
 
     const images = [
@@ -67,10 +68,10 @@ class StorageDataView extends StatelessWidget {
       "storage_ic_monitor.png"
     ];
     final titles = [
-      S.current.inStorageApply,
-      S.current.outStorageApply,
-      S.current.applyTransport,
-      S.current.monitor
+      LocaleKeys.inStorageApply.tr,
+      LocaleKeys.outStorageApply.tr,
+      LocaleKeys.applyTransport.tr,
+      LocaleKeys.monitor.tr
     ];
     children.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
     for (var i = 0; i < images.length; i++) {

@@ -1,24 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luobo_project/model/home_banner_model.dart';
 import 'package:luobo_project/model/home_list_model.dart';
 import 'package:luobo_project/network/http.dart';
 import 'package:luobo_project/network/response.dart';
 
-class HomeViewModel extends ChangeNotifier {
+class HomeViewModel extends GetxController {
   HomeHeaderInfo? _headInfo;
   List<RecommendGoods>? _recommendList;
   HomeHeaderInfo? get headerInfo => _headInfo;
   List<RecommendGoods>? get recommendList => _recommendList;
 
+  @override
+  void onInit() {
+    super.onInit();
+    requestHomeHeadInfo();
+    requestHomeList();
+  }
+
   void setHeaderInfo(HomeHeaderInfo? headInfo) {
     _headInfo = headInfo;
-    notifyListeners();
+    update();
   }
 
   void setRecommendList(List<RecommendGoods>? list) {
     _recommendList = list;
-    notifyListeners();
+    update();
   }
 
   Future<Result<HomeHeaderInfo>> requestHomeHeadInfo() async {

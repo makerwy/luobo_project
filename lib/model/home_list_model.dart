@@ -109,3 +109,12 @@ class RecommendGoods {
         "weight": weight,
       };
 }
+
+// class User {
+//   String name;
+//   String phone;
+//   User(this.name, this.phone);
+
+//   factory User.fromJson(Map<String, dynamic> json) =>
+//       User(json["name"], json["phone"]);
+// }
