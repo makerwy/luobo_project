@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:luobo_project/generated/locales.g.dart';
-import '/pages/home.dart';
+import '../pages/home/home.dart';
 import '/pages/mall.dart';
 import '/pages/mine.dart';
 import '/pages/storage.dart';

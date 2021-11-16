@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:luobo_project/main.dart';
-import 'package:luobo_project/pages/goos_detail.dart';
-import 'package:luobo_project/pages/home.dart';
+import 'package:luobo_project/pages/goods_detail.dart';
+import 'package:luobo_project/pages/home/home.dart';
+import 'package:luobo_project/pages/home/home_binding.dart';
 
 class Routers {
   static final Map<String, WidgetBuilder> routers = {
@@ -11,8 +12,14 @@ class Routers {
     RouterNames.goodsdetail: (ctx) => const GoodsDetailPage()
   };
   static final List<GetPage> getPages = [
-    GetPage(name: RouterNames.root, page: () => const TabPage()),
-    GetPage(name: RouterNames.home, page: () => const HomePage()),
+    GetPage(
+        name: RouterNames.root,
+        page: () => const TabPage(),
+        binding: HomeBinding()),
+    GetPage(
+        name: RouterNames.home,
+        page: () => const HomePage(),
+        binding: HomeBinding()),
     GetPage(name: RouterNames.goodsdetail, page: () => const GoodsDetailPage()),
   ];
 }

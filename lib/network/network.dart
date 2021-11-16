@@ -79,7 +79,6 @@ class Network {
         options: requestOptions,
         cancelToken: cancelToken ?? _cancelToken,
         onReceiveProgress: progressCallback);
-    ;
   }
 
   Future post(

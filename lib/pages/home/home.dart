@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,27 +7,12 @@ import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/model/home_banner_model.dart';
 import 'package:luobo_project/model/home_list_model.dart';
+import 'package:luobo_project/pages/home/home_controller.dart';
 import 'package:luobo_project/utils/toast.dart';
-import 'package:luobo_project/viewmodel/home_view_model.dart';
 import 'package:luobo_project/widgets/swiper.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int index = 0;
-
-  @override
-  void initState() {
-    // HomeViewModel homeVM = HomeViewModel();
-    // homeVM.requestHomeHeadInfo();
-    // homeVM.requestHomeList();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,37 +25,35 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: GetBuilder<HomeViewModel>(
-                init: HomeViewModel(),
-                builder: (controller) => HomeTopHeader(
-                  banners: (controller.headerInfo?.banner ?? [])
-                      .map((e) => GestureDetector(
-                            // child: Image.network(e, fit: BoxFit.fill),
-                            child: CachedNetworkImage(
-                              // imageUrl: e.picture ?? "",
-                              imageUrl:
-                                  "https://picsum.photos/450/150?random=${Random().nextInt(200)}",
-                              fit: BoxFit.cover,
-                              placeholder: (ctx, r) {
-                                return const Center(
-                                    child: SizedBox(
-                                  child: CircularProgressIndicator(),
-                                  width: 40,
-                                ));
-                              },
-                            ),
-                            onTap: () {
-                              // LBToast.showToast(msg: e);
-                              LBToast.showLoading();
-                            },
-                          ))
-                      .toList(),
-                  kindList: controller.headerInfo?.brandList ?? [],
-                ),
-              ),
-            ),
-            GetBuilder<HomeViewModel>(
+            GetBuilder<HomeController>(
+                builder: (controller) => SliverToBoxAdapter(
+                      child: HomeTopHeader(
+                        banners: (controller.headerInfo?.banner ?? [])
+                            .map((e) => GestureDetector(
+                                  // child: Image.network(e, fit: BoxFit.fill),
+                                  child: CachedNetworkImage(
+                                    // imageUrl: e.picture ?? "",
+                                    imageUrl:
+                                        "https://picsum.photos/450/150?random=${Random().nextInt(200)}",
+                                    fit: BoxFit.cover,
+                                    placeholder: (ctx, r) {
+                                      return const Center(
+                                          child: SizedBox(
+                                        child: CircularProgressIndicator(),
+                                        width: 40,
+                                      ));
+                                    },
+                                  ),
+                                  onTap: () {
+                                    // LBToast.showToast(msg: e);
+                                    LBToast.showLoading();
+                                  },
+                                ))
+                            .toList(),
+                        kindList: controller.headerInfo?.brandList ?? [],
+                      ),
+                    )),
+            GetBuilder<HomeController>(
               builder: (controller) => SliverList(
                 // itemExtent: 50.0,
                 delegate: SliverChildBuilderDelegate(

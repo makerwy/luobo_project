@@ -8,8 +8,6 @@ import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/network/http.dart';
 import 'package:luobo_project/utils/api.dart';
 import 'package:luobo_project/utils/local_cache.dart';
-import 'package:luobo_project/viewmodel/home_view_model.dart';
-import 'package:provider/provider.dart';
 
 import 'const/tabbar_config.dart';
 import 'const/app_theme.dart';
@@ -42,12 +40,13 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       // home: const TabPage(),
       initialRoute: RouterNames.root,
+      // initialBinding: HomeBinding(),
       getPages: Routers.getPages,
       locale: window.locale,
       translationsKeys: AppTranslation.translations,
       localeListResolutionCallback: (locales, supportedLocales) {
-        print('当前系统语言环境:$locales');
-        print('当前系统支持语言环境:$supportedLocales');
+        debugPrint('当前系统语言环境:$locales');
+        debugPrint('当前系统支持语言环境:$supportedLocales');
         return;
       },
       // routes: Routers.routers,
