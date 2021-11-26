@@ -1,5 +1,19 @@
 {
     "app_name":"萝泊云仓",
+
+    "forget_password":"忘记密码？",
+    "phone":"手机号码",
+    "input_password":"请输入密码",
+    "input_checkcode":"请输入验证码",
+    "get_checkcode":"获取验证码",
+    "login":"登录",
+    "register":"立即注册",
+    "checkcode_login":"验证码登录",
+    "password_login":"密码登录",
+    "other_login":"其他方式登录",
+    "login_protocol":"我已阅读并同意",
+    "login_private_protocol":"《用户隐私政策》",
+    "login_service_protocol":"《萝泊服务协议》",
     
     "home":"首页",
     "storage":"仓储/物流",
@@ -39,6 +53,8 @@
     "buybackOrder":"回购订单",
     "tradeOrder":"贸易订单",
     "finace":"存货融资",
-    "buybackApply":"回购申请"
+    "buybackApply":"回购申请",
+
+    "waybill_list":"运单列表"
 
 }

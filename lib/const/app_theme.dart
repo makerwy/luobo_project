@@ -41,7 +41,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
       ));
   static const AppBarTheme darkAppBarTheme = AppBarTheme(
       backgroundColor: Colors.black,
@@ -49,7 +49,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         color: Colors.white,
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
       ));
 
   static const BottomNavigationBarThemeData norBottomBarTheme =
@@ -67,19 +67,43 @@ class AppTheme {
 
   //normal
   static final ThemeData norTheme = ThemeData(
-      primarySwatch: norPrimarySwatch,
-      primaryColor: const Color(0xFFFF0000),
-      splashColor: const Color(0x00000000), //去除点击tab时的水波纹动画
-      appBarTheme: norAppBarTheme,
-      bottomNavigationBarTheme: norBottomBarTheme);
+    brightness: Brightness.light,
+    // primarySwatch: norPrimarySwatch,
+    primaryColor: const Color(0xFFFF0000),
+    splashColor: Colors.transparent, //全局去除按钮点击时的水波纹动画
+    highlightColor: Colors.transparent, //全局去除按钮点击时的水波纹动画
+    appBarTheme: norAppBarTheme,
+    bottomNavigationBarTheme: norBottomBarTheme,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    scaffoldBackgroundColor: Colors.white,
+  );
 
   //dark
   static final ThemeData darkTheme = ThemeData(
-    primarySwatch: darkPrimarySwatch,
+    brightness: Brightness.dark,
+    // primarySwatch: darkPrimarySwatch,
     primaryColor: const Color(0xFFFF0000),
-    splashColor: const Color(0x00000000), //去除点击tab时的水波纹动画
+    splashColor: Colors.transparent, //全局去除按钮点击时的水波纹动画
+    highlightColor: Colors.transparent, //全局去除按钮点击时的水波纹动画
     appBarTheme: darkAppBarTheme,
     bottomNavigationBarTheme: darkBottomBarTheme,
+    buttonTheme: const ButtonThemeData(
+        highlightColor: Colors.transparent, splashColor: Colors.transparent),
+    scaffoldBackgroundColor: Colors.black,
   );
 }
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:luobo_project/app/modules/home/views/home_view.dart';
 import 'package:luobo_project/generated/locales.g.dart';
-import '../pages/home/home.dart';
 import '/pages/mall.dart';
 import '/pages/mine.dart';
 import '/pages/storage.dart';
 
 class Tabbar {
   static const List<Widget> pages = [
-    HomePage(),
+    HomeView(),
     StoragePage(),
     MallPage(),
     MinePage()

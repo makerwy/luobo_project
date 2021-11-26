@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:luobo_project/const/routers.dart';
+import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/network/http.dart';
 import 'package:luobo_project/utils/api.dart';
 import 'package:luobo_project/utils/local_cache.dart';
+import 'package:luobo_project/utils/screen.dart';
+import 'package:luobo_project/utils/utils.dart';
 
 import 'const/tabbar_config.dart';
 import 'const/app_theme.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    LocalCache().init();
+    LocalCache.preInit();
     Http.init(baseUrl: Api.baseUrl, headers: {
       "version": "1.0.0",
       "app_id": "100",
@@ -39,9 +41,9 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.norTheme,
       darkTheme: AppTheme.darkTheme,
       // home: const TabPage(),
-      initialRoute: RouterNames.root,
+      initialRoute: AppPages.initial,
       // initialBinding: HomeBinding(),
-      getPages: Routers.getPages,
+      getPages: AppPages.routes,
       locale: window.locale,
       translationsKeys: AppTranslation.translations,
       localeListResolutionCallback: (locales, supportedLocales) {
@@ -50,8 +52,29 @@ class MyApp extends StatelessWidget {
         return;
       },
       // routes: Routers.routers,
-      builder: EasyLoading.init(),
+      // builder: (ctx, child) => GestureDetector(
+      //   // Global GestureDetector that will dismiss the keyboard
+      //   onTap: () {
+      //     hideKeyboard(context);
+      //   },
+      //   child: Text("data"),
+      // ),
+      builder: EasyLoading.init(
+          builder: (ctx, child) => GestureDetector(
+                // Global GestureDetector that will dismiss the keyboard
+                onTap: () {
+                  hideKeyboard(context);
+                },
+                child: child,
+              )),
     );
+  }
+}
+
+void hideKeyboard(BuildContext context) {
+  FocusScopeNode currentFocus = FocusScope.of(context);
+  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 }
 
@@ -67,6 +90,7 @@ class _TabPageState extends State<TabPage> {
 
   @override
   Widget build(BuildContext context) {
+    Screen.preInit(context);
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -83,9 +107,13 @@ class _TabPageState extends State<TabPage> {
         items: Tabbar.items,
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          if (Utils.isLogin()) {
+            setState(() {
+              _currentIndex = index;
+            });
+          } else {
+            Get.toNamed(Routes.login);
+          }
         },
       ),
     );

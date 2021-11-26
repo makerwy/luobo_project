@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:luobo_project/const/const.dart';
 import 'package:luobo_project/network/error.dart';
 import 'package:luobo_project/utils/local_cache.dart';
 
@@ -40,7 +41,7 @@ class Network {
 
   Map<String, dynamic>? _getAuthorizationHeader() {
     Map<String, dynamic>? headers;
-    String? accessToken = LocalCache().getLocalString("accessToken");
+    String? accessToken = LocalCache.getInstance().get(Constant.ACCESS_TOKEN);
     if (accessToken != null) {
       headers = {
         'Authorization': 'Bearer $accessToken',

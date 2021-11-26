@@ -1,6 +1,20 @@
 {
     "app_name":"Luobo Houseware",
 
+    "forget_password":"Forget Password?",
+    "phone":"phone",
+    "input_password":"please enter password",
+    "input_checkcode":"please enter check code",
+    "get_checkcode":"get check code",
+    "login":"Login",
+    "register":"Register",
+    "checkcode_login":"check code login",
+    "password_login":"password login",
+    "other_login":"others login",
+    "login_protocol":"I have read and agree to the",
+    "login_private_protocol":"User Privacy Policy",
+    "login_service_protocol":"and Luobo Service Agreement",
+
     "home":"Home",
     "storage":"Storage",
     "mall":"Mall",
@@ -39,5 +53,7 @@
     "buybackOrder":"Buyback Ordes",
     "tradeOrder":"Trade Ordes",
     "finace":"Finance",
-    "buybackApply":"Buyback Apply"
+    "buybackApply":"Buyback Apply",
+
+    "waybill_list":"Waybill List"
 }

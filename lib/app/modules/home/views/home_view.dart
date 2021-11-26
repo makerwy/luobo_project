@@ -1,18 +1,22 @@
 import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/model/home_banner_model.dart';
 import 'package:luobo_project/model/home_list_model.dart';
-import 'package:luobo_project/pages/home/home_controller.dart';
 import 'package:luobo_project/utils/toast.dart';
 import 'package:luobo_project/widgets/swiper.dart';
 
-class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+import '../controllers/home_controller.dart';
+
+class HomeView extends GetView<HomeController> {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,7 @@ class HomePage extends GetView<HomeController> {
                       child:
                           HomeListItem(model: controller.recommendList?[index]),
                       onTap: () {
-                        Get.toNamed(RouterNames.goodsdetail);
+                        Get.toNamed(Routes.goodsdetail);
                         // Navigator.of(context)
                         //     .pushNamed(RouterNames.goodsdetail);
                       },

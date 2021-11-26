@@ -12,6 +12,19 @@ class AppTranslation {
 class LocaleKeys {
   LocaleKeys._();
   static const app_name = 'app_name';
+  static const forget_password = 'forget_password';
+  static const phone = 'phone';
+  static const input_password = 'input_password';
+  static const input_checkcode = 'input_checkcode';
+  static const get_checkcode = 'get_checkcode';
+  static const login = 'login';
+  static const register = 'register';
+  static const checkcode_login = 'checkcode_login';
+  static const password_login = 'password_login';
+  static const other_login = 'other_login';
+  static const login_protocol = 'login_protocol';
+  static const login_private_protocol = 'login_private_protocol';
+  static const login_service_protocol = 'login_service_protocol';
   static const home = 'home';
   static const storage = 'storage';
   static const mall = 'mall';
@@ -47,11 +60,25 @@ class LocaleKeys {
   static const tradeOrder = 'tradeOrder';
   static const finace = 'finace';
   static const buybackApply = 'buybackApply';
+  static const waybill_list = 'waybill_list';
 }
 
 class Locales {
   static const zh_CN = {
     'app_name': '萝泊云仓',
+    'forget_password': '忘记密码？',
+    'phone': '手机号码',
+    'input_password': '请输入密码',
+    'input_checkcode': '请输入验证码',
+    'get_checkcode': '获取验证码',
+    'login': '登录',
+    'register': '立即注册',
+    'checkcode_login': '验证码登录',
+    'password_login': '密码登录',
+    'other_login': '其他方式登录',
+    'login_protocol': '我已阅读并同意',
+    'login_private_protocol': '《用户隐私政策》',
+    'login_service_protocol': '《萝泊服务协议》',
     'home': '首页',
     'storage': '仓储/物流',
     'mall': '贸易',
@@ -87,9 +114,23 @@ class Locales {
     'tradeOrder': '贸易订单',
     'finace': '存货融资',
     'buybackApply': '回购申请',
+    'waybill_list': '运单列表',
   };
   static const en_US = {
     'app_name': 'Luobo Houseware',
+    'forget_password': 'Forget Password?',
+    'phone': 'phone',
+    'input_password': 'please enter password',
+    'input_checkcode': 'please enter check code',
+    'get_checkcode': 'get check code',
+    'login': 'Login',
+    'register': 'Register',
+    'checkcode_login': 'check code login',
+    'password_login': 'password login',
+    'other_login': 'others login',
+    'login_protocol': 'I have read and agree to the',
+    'login_private_protocol': 'User Privacy Policy',
+    'login_service_protocol': 'and Luobo Service Agreement',
     'home': 'Home',
     'storage': 'Storage',
     'mall': 'Mall',
@@ -125,5 +166,6 @@ class Locales {
     'tradeOrder': 'Trade Ordes',
     'finace': 'Finance',
     'buybackApply': 'Buyback Apply',
+    'waybill_list': 'Waybill List',
   };
 }

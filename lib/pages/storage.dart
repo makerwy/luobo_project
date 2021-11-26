@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 
@@ -48,17 +50,28 @@ class StorageDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var children = <Widget>[];
+    final list1 = [
+      LocaleKeys.inStorage.tr,
+      LocaleKeys.outStorage.tr,
+      LocaleKeys.inventory.tr
+    ];
     children.add(StorageDataItemView(
       title: LocaleKeys.storageData.tr,
-      map: {
-        LocaleKeys.inStorage.tr: 0,
-        LocaleKeys.outStorage.tr: 0,
-        LocaleKeys.inventory.tr: 0
-      },
+      list: List.generate(list1.length, (index) {
+        return StorageDataItemModel(
+            index: index, title: list1[index], count: 0);
+      }),
     ));
+    final list2 = [LocaleKeys.doing.tr, LocaleKeys.finish.tr];
     children.add(StorageDataItemView(
       title: LocaleKeys.logistisData.tr,
-      map: {LocaleKeys.doing.tr: 0, LocaleKeys.finish.tr: 0},
+      list: List.generate(list2.length, (index) {
+        return StorageDataItemModel(
+            index: index, title: list2[index], count: 0);
+      }),
+      onTap: (index) {
+        Get.toNamed(Routes.waybill, arguments: index);
+      },
     ));
 
     const images = [
@@ -92,10 +105,22 @@ class StorageDataView extends StatelessWidget {
   }
 }
 
+typedef GestureTapIndexCallback = void Function(int index);
+
+class StorageDataItemModel {
+  final int? index;
+  final String? title;
+  final int? count;
+  const StorageDataItemModel({this.index, this.title, this.count});
+}
+
 class StorageDataItemView extends StatelessWidget {
   final String? title;
-  final Map<String, int>? map;
-  const StorageDataItemView({Key? key, this.title, this.map}) : super(key: key);
+  final List<StorageDataItemModel>? list;
+  final GestureTapIndexCallback? onTap;
+
+  const StorageDataItemView({Key? key, this.title, this.list, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -126,12 +151,20 @@ class StorageDataItemView extends StatelessWidget {
             height: 60,
             child: Wrap(
               // alignment: WrapAlignment.spaceBetween,
-              children: (map ?? {}).keys.map((e) {
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width / 3.0,
-                  child: StorageMenuItem(
-                    number: map?[e],
-                    title: e,
+              children: (list ?? []).map((e) {
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    if (onTap != null) {
+                      onTap!(e.index ?? 0);
+                    }
+                  },
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.0,
+                    child: StorageMenuItem(
+                      number: e.count,
+                      title: e.title,
+                    ),
                   ),
                 );
               }).toList(),
@@ -169,7 +202,7 @@ class StorageMenuItem extends StatelessWidget {
               fontSize: 13,
               color: Color.fromARGB(153, 255, 255, 255),
               fontWeight: FontWeight.w500),
-        )
+        ),
       ],
     );
   }
