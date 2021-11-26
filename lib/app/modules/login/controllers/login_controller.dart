@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:luobo_project/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   bool isReadingProtocol = false;
@@ -20,4 +22,7 @@ class LoginController extends GetxController {
     isReadingProtocol = !isReadingProtocol;
     update();
   }
+
+  void toRegisterPage() => Get.toNamed(Routes.register);
+  void toForgetpswPage() => Get.toNamed(Routes.forgetpsw);
 }

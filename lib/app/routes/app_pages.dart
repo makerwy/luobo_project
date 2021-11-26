@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:luobo_project/app/modules/forgetpsw/bindings/forgetpsw_binding.dart';
+import 'package:luobo_project/app/modules/forgetpsw/views/forgetpsw_view.dart';
 import 'package:luobo_project/app/modules/home/bindings/home_binding.dart';
 import 'package:luobo_project/app/modules/home/views/home_view.dart';
 import 'package:luobo_project/app/modules/login/bindings/login_binding.dart';
@@ -54,6 +56,11 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGETPSW,
+      page: () => ForgetpswView(),
+      binding: ForgetpswBinding(),
     ),
   ];
 }
