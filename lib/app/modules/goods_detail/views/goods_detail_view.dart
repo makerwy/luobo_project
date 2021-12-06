@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/widgets/swiper.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../controllers/goods_detail_controller.dart';
 
-class GoodsDetailPage extends StatelessWidget {
-  const GoodsDetailPage({Key? key}) : super(key: key);
+class GoodsDetailView extends GetView<GoodsDetailController> {
+  const GoodsDetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

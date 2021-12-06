@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/generated/locales.g.dart';
+import '../controllers/storage_controller.dart';
 
-class StoragePage extends StatefulWidget {
-  const StoragePage({Key? key}) : super(key: key);
+class StorageView extends GetView<StorageController> {
+  const StorageView({Key? key}) : super(key: key);
 
-  @override
-  _StoragePageState createState() => _StoragePageState();
-}
-
-class _StoragePageState extends State<StoragePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -221,7 +216,7 @@ class StorageCardMenuItem extends StatelessWidget {
       height: 70,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
       child: Container(
-        color: const Color(0xFFF9F9F9),
+        color: LBColors.view,
         child: Row(
           children: [
             Padding(

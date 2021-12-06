@@ -17,13 +17,11 @@ class Result<T> {
 enum RequestStatus { success, error }
 
 class RequestResponse<T> {
-  RequestResponse({
-    this.data,
-    this.retCode,
-  });
+  RequestResponse({this.data, this.retCode, this.errorMsg});
 
   T? data;
   String? retCode;
+  String? errorMsg;
 
   bool get isSuccess {
     return retCode == "0";
@@ -33,10 +31,12 @@ class RequestResponse<T> {
       RequestResponse(
         data: json["data"],
         retCode: json["retCode"],
+        errorMsg: json["errorMsg"],
       );
 
   Map<String, dynamic> toJson() => {
         "data": json.encode(data),
         "retCode": retCode,
+        "errorMsg": errorMsg,
       };
 }

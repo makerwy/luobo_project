@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:luobo_project/const/const.dart';
 import 'package:luobo_project/network/error.dart';
 import 'package:luobo_project/utils/local_cache.dart';
@@ -39,9 +40,11 @@ class Network {
     _cancelToken.cancel("cancelled");
   }
 
-  Map<String, dynamic>? _getAuthorizationHeader() {
+  Future<Map<String, dynamic>?> _getAuthorizationHeader() async {
     Map<String, dynamic>? headers;
-    String? accessToken = LocalCache.getInstance().get(Constant.ACCESS_TOKEN);
+    String? accessToken =
+        await LocalCache.getInstance().get(Constant.ACCESS_TOKEN);
+    debugPrint("accessToken ==== $accessToken");
     if (accessToken != null) {
       headers = {
         'Authorization': 'Bearer $accessToken',
@@ -50,11 +53,11 @@ class Network {
     return headers;
   }
 
-  Options _getRequestOptions(Options? options) {
+  Future<Options> _getRequestOptions(Options? options) async {
     Options requestOptions = options ?? Options();
-    Map<String, dynamic>? _authorization = _getAuthorizationHeader();
+    Map<String, dynamic>? _authorization = await _getAuthorizationHeader();
     if (_authorization != null) {
-      requestOptions = requestOptions.copyWith(headers: _authorization);
+      // requestOptions = requestOptions.copyWith(headers: _authorization);
     }
     return requestOptions;
   }
@@ -66,7 +69,9 @@ class Network {
     CancelToken? cancelToken,
     ProgressCallback? progressCallback,
   }) async {
-    Options requestOptions = _getRequestOptions(options);
+    Options requestOptions = await _getRequestOptions(options);
+    debugPrint(
+        "requestOptions === ${dio.options.baseUrl}$path ${queryParameters.toString()}");
     // requestOptions = requestOptions.copyWith(
     //   extra: {
     //     // "refresh": refresh,
@@ -75,6 +80,11 @@ class Network {
     //     // "cacheDisk": cacheDisk,
     //   },
     // );
+    queryParameters ??= {};
+    String? token = await LocalCache.getInstance().get("access_token");
+    if (token != null) {
+      queryParameters.addAll({"accessToken": token});
+    }
     return await dio.get(path,
         queryParameters: queryParameters,
         options: requestOptions,
@@ -91,7 +101,12 @@ class Network {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    Options requestOptions = _getRequestOptions(options);
+    Options requestOptions = await _getRequestOptions(options);
+    queryParameters ??= {};
+    String? token = await LocalCache.getInstance().get("access_token");
+    if (token != null) {
+      queryParameters.addAll({"accessToken": token});
+    }
     return await dio.post(path,
         data: data,
         queryParameters: queryParameters,
@@ -110,7 +125,7 @@ class Network {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    Options requestOptions = _getRequestOptions(options);
+    Options requestOptions = await _getRequestOptions(options);
     return await dio.put(path,
         data: data,
         queryParameters: queryParameters,
@@ -129,7 +144,7 @@ class Network {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    Options requestOptions = _getRequestOptions(options);
+    Options requestOptions = await _getRequestOptions(options);
     return await dio.patch(path,
         data: data,
         queryParameters: queryParameters,
@@ -146,7 +161,7 @@ class Network {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    Options requestOptions = _getRequestOptions(options);
+    Options requestOptions = await _getRequestOptions(options);
     return await dio.delete(path,
         data: data,
         queryParameters: queryParameters,

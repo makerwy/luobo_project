@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class RegisterController extends GetxController {
+class StorageController extends GetxController {
+  //TODO: Implement StorageController
+
   final count = 0.obs;
   @override
   void onInit() {

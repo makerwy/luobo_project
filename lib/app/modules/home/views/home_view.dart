@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
-import 'package:luobo_project/const/routers.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/model/home_banner_model.dart';
 import 'package:luobo_project/model/home_list_model.dart';
@@ -67,7 +66,7 @@ class HomeView extends GetView<HomeController> {
                       child:
                           HomeListItem(model: controller.recommendList?[index]),
                       onTap: () {
-                        Get.toNamed(Routes.goodsdetail);
+                        Get.toNamed(Routes.goodsDetail);
                         // Navigator.of(context)
                         //     .pushNamed(RouterNames.goodsdetail);
                       },
@@ -233,16 +232,23 @@ class HomeListItem extends StatelessWidget {
                   ),
                 ),
                 RichText(
-                    text: TextSpan(
-                        text: "${model?.price ?? 0}",
-                        style: const TextStyle(
-                            fontSize: 16, color: LBColors.c_ce5c3c),
-                        children: const [
+                  text: TextSpan(
+                    text: "${model?.price ?? 0}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFFCE5C3C),
+                    ),
+                    children: const [
                       TextSpan(
-                          text: "元",
-                          style: TextStyle(
-                              fontSize: 13, color: LBColors.c_ce5c3c)),
-                    ])),
+                        text: "元",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Color(0xFFCE5C3C),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 // const Text("69.81万"),
               ],
             ),

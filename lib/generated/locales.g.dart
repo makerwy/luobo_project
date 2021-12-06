@@ -66,7 +66,7 @@ class LocaleKeys {
 class Locales {
   static const zh_CN = {
     'app_name': '萝泊云仓',
-    'forget_password': '忘记密码？',
+    'forget_password': '忘记密码',
     'phone': '手机号码',
     'input_password': '请输入密码',
     'input_checkcode': '请输入验证码',
@@ -118,7 +118,7 @@ class Locales {
   };
   static const en_US = {
     'app_name': 'Luobo Houseware',
-    'forget_password': 'Forget Password?',
+    'forget_password': 'Forget Password',
     'phone': 'phone',
     'input_password': 'please enter password',
     'input_checkcode': 'please enter check code',

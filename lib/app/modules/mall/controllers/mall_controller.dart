@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class RegisterController extends GetxController {
+class MallController extends GetxController {
+  //TODO: Implement MallController
+
   final count = 0.obs;
   @override
   void onInit() {

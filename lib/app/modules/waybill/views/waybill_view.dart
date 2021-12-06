@@ -66,11 +66,12 @@ class _WaybillViewState extends State<WaybillView>
               child: TabBarView(
                   controller: _controller,
                   children: categoryList.map((tab) {
-                    return Container(
-                        // color: Colors.red,
-                        child: Center(
-                            child: Text(tab,
-                                style: const TextStyle(fontSize: 25))));
+                    return Center(
+                      child: Text(
+                        tab,
+                        style: const TextStyle(fontSize: 25),
+                      ),
+                    );
                   }).toList()),
             ),
           ],

@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class ForgetpswController extends GetxController {
-  //TODO: Implement ForgetpswController
-
   final count = 0.obs;
   @override
   void onInit() {

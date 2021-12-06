@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/generated/locales.g.dart';
+import '../controllers/mall_controller.dart';
 
-class MallPage extends StatefulWidget {
-  const MallPage({Key? key}) : super(key: key);
+class MallView extends GetView<MallController> {
+  const MallView({Key? key}) : super(key: key);
 
-  @override
-  _MallPageState createState() => _MallPageState();
-}
-
-class _MallPageState extends State<MallPage> {
   @override
   Widget build(BuildContext context) {
     var children = <Widget>[const _MallHeaderView()];
@@ -35,7 +31,7 @@ class _MallPageState extends State<MallPage> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         margin: const EdgeInsets.fromLTRB(15, 0, 15, 10),
         height: 60,
-        color: LBColors.line,
+        color: LBColors.view,
         child: SizedBox(
           width: double.infinity,
           height: 60,

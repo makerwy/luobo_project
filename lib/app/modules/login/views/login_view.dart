@@ -7,7 +7,6 @@ import 'package:luobo_project/utils/screen.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  TextEditingController? _controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +14,7 @@ class LoginView extends GetView<LoginController> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: LBColors.black,
           ),
           onPressed: () {
             Get.back();
@@ -25,11 +24,9 @@ class LoginView extends GetView<LoginController> {
           TextButton(
               style: ButtonStyle(
                   overlayColor: MaterialStateProperty.all(Colors.transparent)),
-              onPressed: () {
-                debugPrint(LocaleKeys.forget_password.tr);
-              },
+              onPressed: controller.toForgetpswPage,
               child: Text(
-                LocaleKeys.forget_password.tr,
+                LocaleKeys.forget_password.tr + "?",
                 style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF584096),
@@ -43,8 +40,9 @@ class LoginView extends GetView<LoginController> {
 
   _builderView(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
+      child: Container(
         // color: Colors.red,
+        padding: const EdgeInsets.only(bottom: 20),
         height: Screen.height -
             Screen.top -
             Screen.bottom -
@@ -97,23 +95,21 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  GetBuilder<LoginController> _buildProtocolView() {
-    return GetBuilder<LoginController>(builder: (controller) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: controller.changeReadingState,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(controller.isReadingProtocol
-                    ? "assets/images/login_ic_select.png"
-                    : "assets/images/login_ic_unselect.png")),
-          ),
-          _buildRichText(),
-        ],
-      );
-    });
+  Widget _buildProtocolView() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: controller.changeReadingState,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          constraints: BoxConstraints.tight(const Size(40, 40)),
+          icon: Obx(() => Image.asset(controller.isReadingProtocol.value
+              ? "assets/images/login_ic_select.png"
+              : "assets/images/login_ic_unselect.png")),
+        ),
+        _buildRichText(),
+      ],
+    );
   }
 
   Container _buildOtherLogin() {
@@ -148,7 +144,11 @@ class LoginView extends GetView<LoginController> {
       width: MediaQuery.of(context).size.width - 55 * 2,
       height: 40,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.phoneNode.unfocus();
+          controller.passwordNode.unfocus();
+          controller.requestLogin();
+        },
         child: Text(LocaleKeys.login.tr),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.blue),
@@ -164,7 +164,8 @@ class LoginView extends GetView<LoginController> {
     return Container(
       margin: const EdgeInsets.fromLTRB(55, 0, 55, 0),
       child: TextField(
-        controller: _controller,
+        controller: controller.passwordController,
+        focusNode: controller.passwordNode,
         cursorColor: Colors.blue,
         obscureText: true,
         decoration: InputDecoration(
@@ -186,7 +187,8 @@ class LoginView extends GetView<LoginController> {
     return Container(
       margin: const EdgeInsets.fromLTRB(55, 30, 55, 0),
       child: TextField(
-        controller: _controller,
+        controller: controller.phoneController,
+        focusNode: controller.phoneNode,
         cursorColor: Colors.blue,
         keyboardType: TextInputType.phone,
         maxLength: 11,

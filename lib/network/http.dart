@@ -42,11 +42,11 @@ class Http {
         options: options,
         cancelToken: cancelToken,
         progressCallback: progressCallback);
-    debugPrint("path === " + response.data);
+    debugPrint("response === " + response.data);
     return _getMap(response.data);
   }
 
-  static Future post(
+  static Future<RequestResponse> post(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
@@ -62,10 +62,11 @@ class Http {
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
+    debugPrint("response === " + response.data);
     return _getMap(response.data);
   }
 
-  static Future put(
+  static Future<RequestResponse> put(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
@@ -84,7 +85,7 @@ class Http {
     return _getMap(response.data);
   }
 
-  Future patch(
+  Future<RequestResponse> patch(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
@@ -103,7 +104,7 @@ class Http {
     return _getMap(response.data);
   }
 
-  Future delete(
+  Future<RequestResponse> delete(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,

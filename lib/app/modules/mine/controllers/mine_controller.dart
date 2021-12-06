@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class RegisterController extends GetxController {
+class MineController extends GetxController {
   final count = 0.obs;
   @override
   void onInit() {

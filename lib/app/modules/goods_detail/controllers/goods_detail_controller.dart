@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class RegisterController extends GetxController {
+class GoodsDetailController extends GetxController {
+  //TODO: Implement GoodsDetailController
+
   final count = 0.obs;
   @override
   void onInit() {
