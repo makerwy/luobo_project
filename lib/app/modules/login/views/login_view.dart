@@ -1,12 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
+import 'package:luobo_project/const/const.dart';
 import 'package:luobo_project/generated/locales.g.dart';
 import 'package:luobo_project/utils/screen.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,14 +223,14 @@ class LoginView extends GetView<LoginController> {
               style: const TextStyle(color: LBColors.subtitle, fontSize: 12),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  debugPrint(LocaleKeys.login_private_protocol.tr);
+                  Get.toNamed(Routes.DISPLAY_HTML, arguments: HTML.policy);
                 }),
           TextSpan(
             text: LocaleKeys.login_service_protocol.tr,
             style: const TextStyle(color: LBColors.subtitle, fontSize: 12),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                debugPrint(LocaleKeys.login_service_protocol.tr);
+                Get.toNamed(Routes.DISPLAY_HTML, arguments: HTML.useragreement);
               },
           ),
         ],

@@ -9,6 +9,10 @@ class LoginApi {
   static const String sendMsg = "sms/send_msg";
 }
 
+class RegisterApi {
+  static const String register = "merchant/reg";
+}
+
 class MineApi {
   static const String userProfile = "user/profile";
 }

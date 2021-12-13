@@ -11,7 +11,7 @@ import 'package:luobo_project/utils/local_cache.dart';
 import 'package:luobo_project/utils/toast.dart';
 
 class LoginController extends GetxController {
-  var isReadingProtocol = false.obs;
+  var isReadingProtocol = true.obs;
 
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
@@ -59,7 +59,6 @@ class LoginController extends GetxController {
       LoginApi.phoneLogin,
       queryParameters: {
         "mobile": phone,
-        "deviceType": "IOS",
         "password": password,
         "type": password,
       },

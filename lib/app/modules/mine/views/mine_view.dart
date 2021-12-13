@@ -1,6 +1,8 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:luobo_project/app/modules/tab/controllers/tab_controller.dart';
 import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
 import 'package:luobo_project/const/const.dart';
@@ -74,8 +76,24 @@ class MineView extends GetView<MineController> {
 
   void onTap(index) {
     switch (index) {
+      case 0:
+        break;
+      case 1:
+        Get.toNamed(Routes.DISPLAY_HTML, arguments: HTML.service);
+        break;
+      case 2:
+        AppSettings.openAppSettings();
+        break;
+      case 3:
+        Get.toNamed(Routes.about);
+        break;
+      case 4:
+        Get.toNamed(Routes.DISPLAY_HTML, arguments: HTML.cancellation_account);
+        break;
       case 5:
         LocalCache.getInstance().remove(Constant.ACCESS_TOKEN);
+        var cto = Get.find<TabPageController>();
+        cto.changeIndex(0);
         Get.toNamed(Routes.login);
         break;
       default:
@@ -92,6 +110,7 @@ class MineHeaderView extends StatelessWidget {
       children: [
         Image.asset(
           "assets/images/bg_mine_page.png",
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
         Positioned(

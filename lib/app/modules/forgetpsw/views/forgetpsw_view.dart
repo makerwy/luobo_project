@@ -8,8 +8,8 @@ import 'package:luobo_project/generated/locales.g.dart';
 import '../controllers/forgetpsw_controller.dart';
 
 class ForgetpswView extends GetView<ForgetpswController> {
-  ForgetpswView({Key? key}) : super(key: key);
-  TextEditingController? _controller;
+  const ForgetpswView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +29,11 @@ class ForgetpswView extends GetView<ForgetpswController> {
           _buildDiveider(),
           _buildChildContainer(
               child: TextField(
-            controller: _controller,
+            controller: controller.phoneController,
             keyboardType: TextInputType.phone,
             maxLength: 11,
-            decoration: const InputDecoration(
-              hintText: "请输入手机号码",
+            decoration: InputDecoration(
+              hintText: LocaleKeys.phone.tr,
               border: InputBorder.none,
               counterText: "",
             ),
@@ -45,19 +45,24 @@ class ForgetpswView extends GetView<ForgetpswController> {
               children: [
                 Expanded(
                   child: TextField(
-                    controller: _controller,
+                    controller: controller.checkController,
                     maxLength: 6,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      hintText: "请输入验证码",
+                    decoration: InputDecoration(
+                      hintText: LocaleKeys.input_checkcode.tr,
                       border: InputBorder.none,
                       counterText: "",
                     ),
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
-                  child: Text(LocaleKeys.get_checkcode.tr),
+                  onPressed: controller.requestSendCode,
+                  child: GetBuilder<ForgetpswController>(builder: (controller) {
+                    if (controller.isCountdown) {
+                      return Text("${controller.senconds}s");
+                    }
+                    return Text(LocaleKeys.get_checkcode.tr);
+                  }),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
@@ -68,11 +73,11 @@ class ForgetpswView extends GetView<ForgetpswController> {
           _buildDiveider(),
           _buildChildContainer(
             child: TextField(
-              controller: _controller,
+              controller: controller.pswController,
               obscureText: true,
               maxLength: 16,
-              decoration: const InputDecoration(
-                hintText: "请设置新密码",
+              decoration: InputDecoration(
+                hintText: LocaleKeys.input_password.tr,
                 border: InputBorder.none,
                 counterText: "",
               ),

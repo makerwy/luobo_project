@@ -103,6 +103,7 @@ class Network {
   }) async {
     Options requestOptions = await _getRequestOptions(options);
     queryParameters ??= {};
+    queryParameters.addAll({"deviceType": "IOS"});
     String? token = await LocalCache.getInstance().get("access_token");
     if (token != null) {
       queryParameters.addAll({"accessToken": token});

@@ -6,7 +6,6 @@ abstract class Routes {
 
   static const waybill = _Paths.waybill;
   static const home = _Paths.home;
-  static const root = _Paths.root;
   static const login = _Paths.login;
   static const register = _Paths.register;
   static const forgetpsw = _Paths.forgetpsw;
@@ -15,12 +14,14 @@ abstract class Routes {
   static const storage = _Paths.storage;
   static const goodsDetail = _Paths.goodsDetail;
   static const tab = _Paths.tab;
+  static const service = _Paths.service;
+  static const about = _Paths.mine + _Paths.about;
+  static const DISPLAY_HTML = _Paths.DISPLAY_HTML;
 }
 
 abstract class _Paths {
   static const waybill = '/waybill';
   static const home = '/home';
-  static const root = '/root';
   static const login = '/login';
   static const register = '/register';
   static const forgetpsw = '/forgetpsw';
@@ -29,4 +30,7 @@ abstract class _Paths {
   static const storage = '/storage';
   static const goodsDetail = '/goods-detail';
   static const tab = '/tab';
+  static const service = '/service';
+  static const about = '/about';
+  static const DISPLAY_HTML = '/display-html';
 }

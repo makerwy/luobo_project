@@ -26,6 +26,7 @@ class StorageView extends GetView<StorageController> {
                   Image.asset(
                     "assets/images/bg_storage_page.png",
                     height: 240,
+                    width: double.infinity,
                     fit: BoxFit.cover,
                   ),
                   const StorageDataView()
