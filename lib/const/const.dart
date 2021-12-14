@@ -4,6 +4,9 @@ class Constant {
       "itms-apps://itunes.apple.com/app/id1552597863";
   static const String ACCESS_TOKEN = "access_token";
   static const String Default_Avatar = "assets/images/default_ic_avatar.png";
+
+  static const String monitor = "monitor";
+  static const String dispatcher = "dispatcher";
 }
 
 class HTML {

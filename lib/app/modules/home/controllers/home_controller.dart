@@ -26,6 +26,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    _requestGlobalConfig();
     _requestUserInfo();
     requestHomeHeadInfo();
     requestHomeList();
@@ -43,7 +44,7 @@ class HomeController extends GetxController {
 
   Future<Result<HomeHeaderInfo>> requestHomeHeadInfo() async {
     try {
-      RequestResponse response = await Http.get("index/main");
+      RequestResponse response = await Http.get(HomeApi.main);
       HomeHeaderInfo info = HomeHeaderInfo.fromJson(response.data ?? {});
       setHeaderInfo(info);
       debugPrint("debug ====  " + info.toString());
@@ -56,7 +57,7 @@ class HomeController extends GetxController {
 
   Future requestHomeList() async {
     try {
-      RequestResponse response = await Http.get("index/recommend");
+      RequestResponse response = await Http.get(HomeApi.recommend);
       List<dynamic> list = response.data;
       List<RecommendGoods> goodsList =
           list.map((e) => RecommendGoods.fromJson(e)).toList();
@@ -82,5 +83,13 @@ class HomeController extends GetxController {
         }
       }
     }
+  }
+
+  _requestGlobalConfig() async {
+    RequestResponse response = await Http.get(HomeApi.config);
+    LocalCache.getInstance()
+        .setString(Constant.monitor, response.data["monitor"]);
+    LocalCache.getInstance()
+        .setString(Constant.dispatcher, response.data["dispatcher"]);
   }
 }

@@ -16,3 +16,9 @@ class RegisterApi {
 class MineApi {
   static const String userProfile = "user/profile";
 }
+
+class HomeApi {
+  static const String main = "index/main";
+  static const String recommend = "index/recommend";
+  static const String config = "index/config";
+}

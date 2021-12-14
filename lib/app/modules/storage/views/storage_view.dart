@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luobo_project/app/routes/app_pages.dart';
 import 'package:luobo_project/const/app_theme.dart';
+import 'package:luobo_project/const/const.dart';
 import 'package:luobo_project/generated/locales.g.dart';
+import 'package:luobo_project/utils/local_cache.dart';
 import '../controllers/storage_controller.dart';
 
 class StorageView extends GetView<StorageController> {
@@ -85,8 +87,21 @@ class StorageDataView extends StatelessWidget {
     children.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
     for (var i = 0; i < images.length; i++) {
       var widget = GestureDetector(
-        onTap: () {
+        onTap: () async {
           debugPrint(titles[i]);
+          switch (i) {
+            case 0:
+              break;
+            case 1:
+              break;
+            case 2:
+              break;
+            case 3:
+              var url = await LocalCache.getInstance().get(Constant.monitor);
+              Get.toNamed(Routes.DISPLAY_HTML, arguments: url);
+              break;
+            default:
+          }
         },
         child: StorageCardMenuItem(
             title: titles[i], asset: "assets/images/${images[i]}"),
